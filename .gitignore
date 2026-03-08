@@ -1,1 +1,13 @@
+# File di note personali
 todo.md
+
+# File di dati generati dall'applicazione
+expenses.json
+
+# Cache di Python e file compilati
+__pycache__/
+*.pyc
+
+# Cartelle di ambienti virtuali
+venv/
+.venv/
