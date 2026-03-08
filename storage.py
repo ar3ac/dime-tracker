@@ -1,30 +1,28 @@
 import json
-import os
 
-file_path = "expenses.json"
-
-
-def check_expenses_file():
-    if not os.path.exists("expenses.json"):
-        with open("expenses.json", "w") as f:
-            json.dump([], f)
-            f.close()
+FILE_PATH = "expenses.json"
 
 
 def load_expenses():
-    check_expenses_file()
+    """
+    Carica le spese dal file JSON.
+    Restituisce una lista vuota se il file non esiste o è vuoto.
+    Solleva un ValueError se il file è corrotto.
+    """
     try:
-        with open("expenses.json", "r") as f:
+        with open(FILE_PATH, "r") as f:
             content = f.read()
             if not content:
                 return []
             return json.loads(content)
     except FileNotFoundError:
+        # Se il file non esiste, è come non avere ancora spese.
         return []
     except json.JSONDecodeError:
-        raise ValueError("The expenses.json file is corrupted and cannot be read.")
+        raise ValueError(f"Il file {FILE_PATH} è corrotto e non può essere letto.")
 
 
 def write_expenses(expenses):
-    with open("expenses.json", "w") as f:
+    """Scrive la lista di spese nel file JSON."""
+    with open(FILE_PATH, "w") as f:
         json.dump(expenses, f, indent=4)
