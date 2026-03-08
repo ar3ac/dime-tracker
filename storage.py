@@ -5,9 +5,9 @@ FILE_PATH = "expenses.json"
 
 def load_expenses():
     """
-    Carica le spese dal file JSON.
-    Restituisce una lista vuota se il file non esiste o è vuoto.
-    Solleva un ValueError se il file è corrotto.
+    load expenses from json file
+    return an empty list if file does not exist or is empty
+    raise ValueError if file is corrupted
     """
     try:
         with open(FILE_PATH, "r") as f:
@@ -23,6 +23,6 @@ def load_expenses():
 
 
 def write_expenses(expenses):
-    """Scrive la lista di spese nel file JSON."""
+    """Write the list of expenses to the JSON file."""
     with open(FILE_PATH, "w") as f:
         json.dump(expenses, f, indent=4)
