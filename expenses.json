@@ -1,8 +1,26 @@
 [
     {
-        "id": "1",
+        "id": 2,
         "date": "2024-06-01",
-        "description": "Groceries",
-        "amount": 50.0
+        "description": null,
+        "amount": null
+    },
+    {
+        "id": 1,
+        "date": "2024-06-01",
+        "description": "prova",
+        "amount": 1.0
+    },
+    {
+        "id": 3,
+        "date": "2026-03-09",
+        "description": "prova",
+        "amount": 6.0
+    },
+    {
+        "id": 4,
+        "date": "2026-03-09",
+        "description": "prova",
+        "amount": 7.0
     }
 ]

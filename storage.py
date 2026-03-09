@@ -22,6 +22,13 @@ def load_expenses():
         raise ValueError(f"Il file {FILE_PATH} è corrotto e non può essere letto.")
 
 
+def append_expense(expense):
+    """Add an expense to the list of expenses."""
+    expenses = load_expenses()
+    expenses.append(expense)
+    write_expenses(expenses)
+
+
 def write_expenses(expenses):
     """Write the list of expenses to the JSON file."""
     with open(FILE_PATH, "w") as f:
