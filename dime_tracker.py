@@ -1,4 +1,4 @@
-from storage import load_expenses, append_expense, write_expenses
+from storage import load_expenses, write_expenses
 from datetime import datetime
 
 
@@ -7,6 +7,11 @@ class DimeTracker:
         self.expenses = load_expenses()
 
     def add_expense(self, description, amount):
+        # Argparse already ensures amount is a float.
+        # We just need to validate that the description is not empty or just whitespace.
+        if not description.strip():
+            raise ValueError("Description cannot be empty or contain only spaces.")
+
         if self.expenses:
             new_id = max(e["id"] for e in self.expenses) + 1
         else:
@@ -17,7 +22,8 @@ class DimeTracker:
             "description": description,
             "amount": amount,
         }
-        append_expense(expense)
+        self.expenses.append(expense)
+        write_expenses(self.expenses)
         return expense
 
     def list_expenses(self):
