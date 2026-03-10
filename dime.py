@@ -57,7 +57,10 @@ def main():
             display_expenses_table([expense])
         elif args.command == "list":
             expenses = dime.list_expenses()
-            display_expenses_table(expenses)
+            if not expenses:
+                display_error("No expenses to show.")
+            else:
+                display_expenses_table(expenses)
         elif args.command == "delete":
             deleted_expense = dime.delete_expense(expense_id=args.id)
             display_success(

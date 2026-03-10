@@ -11,7 +11,8 @@ class DimeTracker:
         # We just need to validate that the description is not empty or just whitespace.
         if not description.strip():
             raise ValueError("Description cannot be empty or contain only spaces.")
-
+        if amount < 0:
+            raise ValueError("Amount cannot be negative.")
         if self.expenses:
             new_id = max(e["id"] for e in self.expenses) + 1
         else:
@@ -55,6 +56,8 @@ class DimeTracker:
         if expense_to_update is None:
             raise ValueError(f"Expense with ID {expense_id} not found.")
 
+        if amount is not None and amount < 0:
+            raise ValueError("Amount cannot be negative.")
         # Aggiorna i campi se sono stati forniti
         if description is not None:
             if not description.strip():

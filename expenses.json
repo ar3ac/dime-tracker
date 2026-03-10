@@ -12,12 +12,6 @@
         "amount": 6.0
     },
     {
-        "id": 4,
-        "date": "2026-03-09",
-        "description": "prova",
-        "amount": 7.0
-    },
-    {
         "id": 5,
         "date": "2026-03-09",
         "description": "prova",
@@ -28,5 +22,11 @@
         "date": "2026-03-09",
         "description": "prova",
         "amount": 9.0
+    },
+    {
+        "id": 7,
+        "date": "2026-03-10",
+        "description": "last",
+        "amount": 10.0
     }
 ]
