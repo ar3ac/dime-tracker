@@ -7,8 +7,8 @@ class DimeTracker:
         self.expenses = load_expenses()
 
     def add_expense(self, description, amount):
-        # Argparse already ensures amount is a float.
-        # We just need to validate that the description is not empty or just whitespace.
+        # Argparse assicura che l'amount sia un float.
+        # Validate che la descrizione non sia vuota o solo spazi.
         if not description.strip():
             raise ValueError("Description cannot be empty or contain only spaces.")
         if amount < 0:

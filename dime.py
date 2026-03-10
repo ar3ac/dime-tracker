@@ -6,12 +6,12 @@ from view import display_expenses_table, display_error, display_success
 
 def main():
     parser = argparse.ArgumentParser(description="Dime - A simple expense tracker")
-    # inizialize subparsers for "add" and "list" commands
+    # Inizializza i subparser per i comandi
     subparsers = parser.add_subparsers(
         dest="command", help="Available commands", required=True
     )
 
-    # configure for "add" command
+    # Configura il comando "add"
     add_parser = subparsers.add_parser("add", help="Add a new expense")
     add_parser.add_argument(
         "--description", help="Description of the expense", required=True
@@ -20,16 +20,16 @@ def main():
         "--amount", type=float, help="Amount of the expense", required=True
     )
 
-    # configure for "list" command
+    # Configura il comando "list"
     list_parser = subparsers.add_parser("list", help="List all expenses")
 
-    # configure for "delete" command
+    # Configura il comando "delete"
     delete_parser = subparsers.add_parser("delete", help="Delete an expense by ID")
     delete_parser.add_argument(
         "--id", type=int, help="ID of the expense to delete", required=True
     )
 
-    # configure for "update" command with optional arguments for description and amount
+    # Configura il comando "update" con argomenti opzionali per descrizione e importo
     update_parser = subparsers.add_parser("update", help="Update an expense by ID")
     update_parser.add_argument(
         "--id", type=int, help="ID of the expense to update", required=True
@@ -37,7 +37,7 @@ def main():
     update_parser.add_argument("--description", help="New description of the expense")
     update_parser.add_argument("--amount", type=float, help="New amount of the expense")
 
-    # configure for "summary" command
+    # Configura il comando "summary"
     summary_parser = subparsers.add_parser(
         "summary", help="Show a summary of expenses by month"
     )
