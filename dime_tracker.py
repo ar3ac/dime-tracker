@@ -28,3 +28,59 @@ class DimeTracker:
 
     def list_expenses(self):
         return self.expenses
+
+    def delete_expense(self, expense_id):
+        # Trova la spesa da eliminare
+        expense_to_delete = next(
+            (e for e in self.expenses if e["id"] == expense_id), None
+        )
+
+        # Se non viene trovata, solleva un errore
+        if expense_to_delete is None:
+            raise ValueError(f"Expense with ID {expense_id} not found.")
+
+        # Ricrea la lista escludendo la spesa da eliminare
+        self.expenses = [e for e in self.expenses if e["id"] != expense_id]
+        write_expenses(self.expenses)
+
+        return expense_to_delete
+
+    def update_expense(self, expense_id, description=None, amount=None):
+        # Trova la spesa da aggiornare
+        expense_to_update = next(
+            (e for e in self.expenses if e["id"] == expense_id), None
+        )
+
+        # Se non viene trovata, solleva un errore
+        if expense_to_update is None:
+            raise ValueError(f"Expense with ID {expense_id} not found.")
+
+        # Aggiorna i campi se sono stati forniti
+        if description is not None:
+            if not description.strip():
+                raise ValueError("Description cannot be empty or contain only spaces.")
+            expense_to_update["description"] = description
+        if amount is not None:
+            expense_to_update["amount"] = amount
+
+        write_expenses(self.expenses)
+
+        return expense_to_update
+
+    def summarize(self, month=None):
+        expenses_to_summarize = self.expenses
+        if month:
+            try:
+                month_num = int(month)
+                if not 1 <= month_num <= 12:
+                    raise ValueError("Month must be a number between 1 and 12.")
+            except (ValueError, TypeError):
+                raise ValueError("Month must be a number between 1 and 12.")
+
+            expenses_to_summarize = [
+                e
+                for e in self.expenses
+                if datetime.strptime(e["date"], "%Y-%m-%d").month == month_num
+            ]
+
+        return sum(e["amount"] for e in expenses_to_summarize)

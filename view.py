@@ -35,3 +35,9 @@ def display_error(message):
     """Displays an error message using rich."""
     console = Console()
     console.print(f"[bold red]Error:[/bold red] {message}")
+
+
+def display_success(message):
+    """Displays a success message using rich."""
+    console = Console()
+    console.print(f"[bold green]Success:[/bold green] {message}")
